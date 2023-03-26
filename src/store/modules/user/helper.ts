@@ -6,6 +6,7 @@ export interface UserInfo {
   avatar: string
   name: string
   description: string
+  donate: string
 }
 
 export interface UserState {

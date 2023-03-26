@@ -35,6 +35,12 @@ const userInfo = computed(() => userStore.userInfo)
           v-html="userInfo.description"
         />
       </p>
+      <h2 class="text-xs text-gray-500">
+        <span
+          v-if="isString(userInfo.donate) && userInfo.donate !== ''"
+          v-html="userInfo.donate"
+        />
+      </h2>
     </div>
   </div>
 </template>
