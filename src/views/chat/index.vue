@@ -484,9 +484,28 @@ onUnmounted(() => {
           :class="[isMobile ? 'p-2' : 'p-4']"
         >
           <template v-if="!dataSources.length">
-            <div class="flex items-center justify-center mt-4 text-center text-neutral-300">
+            <!-- 
+              <div class="flex items-center justify-center mt-4 text-center text-neutral-300">
               <SvgIcon icon="ri:bubble-chart-fill" class="mr-2 text-3xl" />
               <span>Aha~</span>
+            </div> 
+            -->
+            <div style="color: black; text-align: center;">
+              永久免费提供学习和测试，最新永久域名<a href="{{process.env.WEBSITE_URL}? process.env.WEBSITE_URL : 'https://chat.h41f.com'}" class="text-blue-500">{{process.env.WEBSITE_URL}? process.env.WEBSITE_URL : 'https://chat.h41f.com'}</a>。欢迎收藏和转发。
+            </div>
+            <div style="color: black; text-align: center; font-size: 100%;">
+              <h1><a href="https://im.geekcloud.cf/file/79b6c9eb0cab240aff402.jpg" class="text-blue-500" target="_blank">广告位招租</a></h1>
+            </div>
+            <div>
+              <br>
+              <br>
+              <div style="text-align: center;">
+                <img src="https://im.geekcloud.cf/file/afabe856504ff27591723.png" style="margin: auto; display: inline-block; width: 35%; height: 35%;">
+                <img src="https://im.geekcloud.cf/file/fb48ab4d864e5d1701321.png" style="margin: auto; display: inline-block; width: 35%; height: 35%;">
+              </div>
+              <div style="color: black; text-align: center;">
+                公益站api_key费用由本人承担，如果你觉得对你有帮助并且条件允许的话，可以给我买一瓶冰阔落。您的支持可以让小站坚持的更久。
+              </div>
             </div>
           </template>
           <template v-else>
