@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      - cf
 
   pull_request:
     branches:
       - main
+      - cf
 
 jobs:
   lint:
