@@ -81,8 +81,7 @@ watch(
         </div>
         <div class="p-4">
           <NButton block @click="show = true">
-            Prompt Store
-            <br>
+            Prompt Store<br>
             (预训练好的咒语)
           </NButton>
         </div>

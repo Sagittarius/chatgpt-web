@@ -136,7 +136,7 @@ async function onConversation() {
                 requestOptions: { prompt: message, options: { ...options } },
               },
             )
-
+            scrollToBottom()
             if (openLongReply && data.detail.choices[0].finish_reason === 'length') {
               options.parentMessageId = data.id
               lastText = data.text
@@ -163,6 +163,33 @@ async function onConversation() {
         +uuid,
         dataSources.value.length - 1,
         {
+          loading: false,
+        },
+      )
+      scrollToBottom()
+      return
+    }
+
+    if (error.message === 'Request failed with status code 403') {
+      updateChatSome(
+        +uuid,
+        dataSources.value.length - 1,
+        {
+          text: '请重新输入问题',
+          loading: false,
+        },
+      )
+      scrollToBottom()
+      window.location.reload()
+      return
+    }
+
+    if (error.message === 'Request failed with status code 429') {
+      updateChatSome(
+        +uuid,
+        dataSources.value.length - 1,
+        {
+          text: '本小时请求速率过快，请稍后再试',
           loading: false,
         },
       )
@@ -291,6 +318,33 @@ async function onRegenerate(index: number) {
           loading: false,
         },
       )
+      return
+    }
+
+    if (error.message === 'Request failed with status code 403') {
+      updateChatSome(
+        +uuid,
+        index,
+        {
+          text: '请重新输入问题',
+          loading: false,
+        },
+      )
+      scrollToBottom()
+      window.location.reload()
+      return
+    }
+
+    if (error.message === 'Request failed with status code 429') {
+      updateChatSome(
+        +uuid,
+        dataSources.value.length - 1,
+        {
+          text: '本小时请求速率过快，请稍后再试',
+          loading: false,
+        },
+      )
+      scrollToBottom()
       return
     }
 
@@ -462,6 +516,16 @@ onUnmounted(() => {
   if (loading.value)
     controller.abort()
 })
+
+try {
+  caches.keys().then((names) => {
+    for (const name of names)
+      caches.delete(name)
+  })
+}
+catch (error) {
+  //
+}
 </script>
 
 <template>
